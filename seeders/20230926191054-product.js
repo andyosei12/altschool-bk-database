@@ -1,0 +1,127 @@
+'use strict';
+
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+  async up(queryInterface, Sequelize) {
+    await queryInterface.bulkInsert(
+      'Products',
+      [
+        {
+          name: 'Long sleeves',
+          price: 10.88,
+          size: 's',
+          image_url: 'https://shoe.example.com',
+          description: 'Quality sleeves for all occasions',
+          category_id: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Gucci shirt',
+          price: 90,
+          size: 'm',
+          image_url: 'https://gucci.example.com',
+          description: 'Quality gucci shirt for all occasions',
+          category_id: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Demi jeans',
+          price: 11.55,
+          size: 's',
+          image_url: 'https://demi.example.com',
+          description: 'Quality demi jeans for all occasions',
+          category_id: 3,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Prada desert boots',
+          price: 10.88,
+          size: 'm',
+          image_url: 'https://prada.example.com',
+          description: 'Quality prada shoe',
+          category_id: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Demiil Office shoe',
+          price: 30,
+          size: 'm',
+          image_url: 'https://demill.example.com',
+          description: 'Quality demill shoe for office',
+          category_id: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Marco Polo Shirt',
+          price: 10.88,
+          size: 's',
+          image_url: 'https://polo.example.com',
+          description: 'Quality sleeves for all occasions',
+          category_id: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Manga Top',
+          price: 8,
+          size: 's',
+          image_url: 'https://manga.example.com',
+          description: 'Quality sleeves for all occasions',
+          category_id: 2,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Denta Shoe',
+          price: 70.88,
+          size: 'm',
+          image_url: 'https://denta.example.com',
+          description: 'Quality shoe for all occasions',
+          category_id: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Top benna',
+          price: 11.77,
+          size: 's',
+          image_url: 'https://benna.example.com',
+          description: 'Quality shoe for all occasions',
+          category_id: 1,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Dreee jeans',
+          price: 10.88,
+          size: 'm',
+          image_url: 'https://dree.example.com',
+          description: 'Quality jeans for all occasions',
+          category_id: 3,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          name: 'Khaki shorts',
+          price: 5.88,
+          size: 's',
+          image_url: 'https://khaki.example.com',
+          description: 'Quality trouser for all occasions',
+          category_id: 3,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ],
+      {}
+    );
+  },
+
+  async down(queryInterface, Sequelize) {
+    await queryInterface.bulkDelete('Products', null, {});
+  },
+};
