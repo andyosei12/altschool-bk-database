@@ -27,7 +27,7 @@ const createUser = async (req, res) => {
   });
 
   const token = jwt.sign(
-    { email: user.email, name: user.name, contact: user.contact },
+    { email: user.email, id: user.id },
     process.env.JWT_SECRET,
     { expiresIn: '1h' }
   );
@@ -39,6 +39,41 @@ const createUser = async (req, res) => {
   });
 };
 
+const loginUser = async (req, res) => {
+  const emailInput = req.body.email;
+  const passwordInput = req.body.password;
+
+  const user = await User.findOne({ where: { email: emailInput } });
+  if (!user) {
+    return res.status(404).json({
+      error: true,
+      message: 'User does not exist. Try signing up',
+    });
+  }
+
+  //  Check user password
+  bcrypt.compare(passwordInput, user.password, function (err, data) {
+    if (data) {
+      const token = jwt.sign(
+        { email: user.email, id: user.id },
+        process.env.JWT_SECRET,
+        { expiresIn: '1h' }
+      );
+      return res.status(200).json({
+        message: 'Login successfully',
+        token,
+        user,
+      });
+    } else {
+      return res.status(401).json({
+        error: true,
+        message: 'Invalid email or password',
+      });
+    }
+  });
+};
+
 module.exports = {
   createUser,
+  loginUser,
 };
