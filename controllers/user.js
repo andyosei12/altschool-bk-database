@@ -1,6 +1,10 @@
 const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid');
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
 const User = require('../models/user');
+
+dotenv.config();
 
 const createUser = async (req, res) => {
   const userEmail = req.body.email;
@@ -22,7 +26,17 @@ const createUser = async (req, res) => {
     role_id: 1,
   });
 
-  console.log(user);
+  const token = jwt.sign(
+    { email: user.email, name: user.name, contact: user.contact },
+    process.env.JWT_SECRET,
+    { expiresIn: '1h' }
+  );
+
+  return res.status(201).json({
+    token,
+    user,
+    message: 'User added successfully',
+  });
 };
 
 module.exports = {
