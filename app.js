@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const sequelize = require('./config/sequelize');
 const userRouter = require('./routes/user');
+const productRouter = require('./routes/product');
 
 const app = express();
 const port = 3000;
@@ -23,6 +24,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/user', userRouter);
+app.use('/products', productRouter);
 
 app.listen(port, () => {
   console.log(`server running on port ${port}`);
